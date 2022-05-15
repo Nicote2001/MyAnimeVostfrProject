@@ -1,0 +1,32 @@
+<div class="container d-flex justify-content-center">
+    <app-carousel [recommandationAnimes] = "recommandationAnimes"></app-carousel>
+</div>
+<div>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-1 mb-1">
+        <div class="col" *ngFor="
+        let anime of recentAnimes
+          | paginate
+            : {
+                itemsPerPage: animesPerPage,
+                currentPage: page,
+                totalItems: totalAnimes
+              }">
+              <div class="card" style="background: black; color:white">
+                <img
+                  src="{{anime.entry.images.webp.image_url}}"
+                  class="card-img-top"
+                  alt="..."
+                  style="height: 20rem;"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">{{anime.entry.title.substring(0,10)}}</h5>
+                </div>
+              </div>
+            </div>
+    </div>
+    
+</div>
+<pagination-controls
+  class="pagi"
+  (pageChange)="page = $event"
+></pagination-controls>
