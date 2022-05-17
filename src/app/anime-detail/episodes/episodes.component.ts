@@ -1,4 +1,4 @@
-import { Component, Injectable, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -9,6 +9,8 @@ import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons';
 export class EpisodesComponent implements OnInit {
 
   @Input() totalEpisodes: number;
+  @Output() PageEmiter = new EventEmitter<number>();
+
   labelsEpisodes: LabelEpisode[] = [];
   Episodes: number[] =[];
   maximum = 100;
@@ -17,13 +19,15 @@ export class EpisodesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.calculateLabels();
+    this.calculateLabels(this.totalEpisodes);
   }
 
   //ne faire que si +100 episodes
-  calculateLabels()
+  calculateLabels(totalEpisodes:number)
   {
-    var episodeSplit = Math.floor(this.totalEpisodes/100);
+    this.labelsEpisodes = [];
+    
+    var episodeSplit = Math.floor(totalEpisodes/100);
     var min = 1;
     var max = 100;
 
@@ -34,7 +38,7 @@ export class EpisodesComponent implements OnInit {
       max+= 100;
     }
 
-    var episodeLastPage = this.totalEpisodes - (episodeSplit*100);
+    var episodeLastPage = totalEpisodes - (episodeSplit*100);
 
     max = min+episodeLastPage-1;
       this.labelsEpisodes.push(new LabelEpisode(min,max,min+"-"+max,this.fillEpisodes(min,max)))
@@ -52,6 +56,10 @@ export class EpisodesComponent implements OnInit {
     return episodeNumbers;
   }
 
+  testclick(episode: number){
+    this.PageEmiter.emit(episode)
+  }
+
 }
 
 
@@ -64,3 +72,4 @@ export class LabelEpisode
     public label:string,
     public episodes:number[]){}
 }
+
