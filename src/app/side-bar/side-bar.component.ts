@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faCake, faRankingStar, faStar } from '@fortawesome/free-solid-svg-icons';
 import { MenuApiCallerService } from '../ApiCallerService/menu.api-caller.service';
 import { IAnime } from '../objects/anime.model';
+import { CommonService } from '../Shared/common.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -12,9 +14,9 @@ export class SideBarComponent implements OnInit {
 
   public topAnimes: IAnime[] = [];
   public topMangas: IAnime[] = [];
-  faRankingStar = faRankingStar
+  faRankingStar = faRankingStar;
 
-  constructor(private api:MenuApiCallerService) { }
+  constructor(private api:MenuApiCallerService, private router:Router, private commonService: CommonService) { }
 
   ngOnInit(): void {
     this.getTopAnimes();
@@ -35,6 +37,12 @@ export class SideBarComponent implements OnInit {
     this.api.getTopManga().subscribe(data =>{
       this.topMangas = data.data.slice(0,5);
     })
+  }
+
+  goToAnimeFromRanking(animeTitle: string)
+  {
+    var formatedTitle = this.commonService.FormatAnimeTitle(animeTitle); 
+    this.router.navigateByUrl('anime/'+formatedTitle+'/'+1);
   }
 
 }

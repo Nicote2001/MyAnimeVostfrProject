@@ -19,6 +19,10 @@ import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
+import {VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './menu/menu.component';
@@ -27,13 +31,16 @@ import { CarouselComponent } from './menu/carousel/carousel.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AppRoutingModule } from './app-routing.module';
+import { AnimeDetailComponent } from './anime-detail/anime-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     CarouselComponent,
-    SideBarComponent
+    SideBarComponent,
+    AnimeDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +62,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MdbValidationModule,
     HttpClientModule,
     FontAwesomeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

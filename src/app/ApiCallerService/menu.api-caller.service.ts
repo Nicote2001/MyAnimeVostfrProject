@@ -28,8 +28,8 @@ export class MenuApiCallerService
         return this.http.get<any>('https://api.jikan.moe/v4/top/manga');
     }
 
-    public getRecentAnimes(): Observable<any>
+    public getRecentAnimes(page: number): Observable<any>
     {
-        return this.http.get<any>('https://api.jikan.moe/v4/watch/episodes');
+        return this.http.get<any>('https://krish-anime-api-98k6.vercel.app/api/recentlyadded/'+page)
     }
 }

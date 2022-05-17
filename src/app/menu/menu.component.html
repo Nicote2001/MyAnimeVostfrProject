@@ -4,29 +4,25 @@
 <div>
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-1 mb-1">
         <div class="col" *ngFor="
-        let anime of recentAnimes
-          | paginate
-            : {
-                itemsPerPage: animesPerPage,
-                currentPage: page,
-                totalItems: totalAnimes
-              }">
-              <div class="card" style="background: black; color:white">
+        let anime of recentAnimes">
+              <button class="card" style="background: black; color:white" (click)="goToAnime(anime)">
                 <img
-                  src="{{anime.entry.images.webp.image_url}}"
+                  src="{{anime.image}}"
                   class="card-img-top"
                   alt="..."
                   style="height: 20rem;"
                 />
                 <div class="card-body">
-                  <h5 class="card-title">{{anime.entry.title.substring(0,10)}}</h5>
+                  <h5 class="card-title">{{anime.title.slice(0,20) + " - Episode " +anime.episodenumber}}</h5>
                 </div>
-              </div>
+              </button>
             </div>
     </div>
     
 </div>
-<pagination-controls
-  class="pagi"
-  (pageChange)="page = $event"
-></pagination-controls>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item" (click)=" onClickChangePage(-1)"><a class="page-link" href="#"><fa-icon [icon]="faAngleLeft"></fa-icon></a></li>
+    <li class="page-item" (click)=" onClickChangePage(1)"><a class="page-link" href="#"><fa-icon [icon]="faAngleRight"></fa-icon></a></li>
+  </ul>
+</nav>

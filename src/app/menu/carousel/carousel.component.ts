@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuApiCallerService } from 'src/app/ApiCallerService/menu.api-caller.service';
 import { IAnime } from 'src/app/objects/anime.model';
+import { CommonService } from 'src/app/Shared/common.service';
 
 @Component({
   selector: 'app-carousel',
@@ -13,11 +15,18 @@ export class CarouselComponent implements OnInit {
 
   public topAnimes: IAnime[] = [];
 
-  constructor(private api : MenuApiCallerService) 
+  constructor(private api : MenuApiCallerService, private commonService:CommonService, private router:Router) 
   {
     
   }
 
   ngOnInit(): void {
+  }
+
+
+  goToAnimeFromCarousel(animeTitle: string)
+  {
+    var formatedTitle = this.commonService.FormatAnimeTitle(animeTitle); 
+    this.router.navigateByUrl('anime/'+formatedTitle+'/'+1);
   }
 }
