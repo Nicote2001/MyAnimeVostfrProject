@@ -33,6 +33,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AnimeDetailComponent } from './anime-detail/anime-detail.component';
+import { EpisodesComponent } from './anime-detail/episodes/episodes.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AnimeDetailComponent } from './anime-detail/anime-detail.component';
     MenuComponent,
     CarouselComponent,
     SideBarComponent,
-    AnimeDetailComponent
+    AnimeDetailComponent,
+    EpisodesComponent
   ],
   imports: [
     BrowserModule,
