@@ -1,10 +1,10 @@
-<div style="background: whitesmoke;">
-    <mdb-tabs >
+<div  style="background:  #181717;">
+    <mdb-tabs class="tab-episode">
         <mdb-tab  title="{{label.label}}" *ngFor="
         let label of labelsEpisodes">
-            <div style="background: #1C1C1C;">
-                <button *ngFor="
-                let episode of label.episodes" type="button" class="btn btn-secondary m-1">{{episode}}</button>
+            <div style="background: #181717;">
+             <button *ngFor="
+                let episode of label.episodes" type="button" class="episode-button">{{episode}}</button>
             </div>
         </mdb-tab>
     </mdb-tabs>
